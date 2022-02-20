@@ -1,0 +1,1 @@
+# The player (#) can move left or right along the bottom of the screen.
