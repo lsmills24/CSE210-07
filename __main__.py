@@ -5,6 +5,10 @@ from game.casting.actor import Actor
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
 
+from game.casting.gems_rocks import Gem
+from game.casting.gems_rocks import Rocks
+from game.casting.removed import Cast # Removed? 
+
 from game.directing.director import Director
 
 from game.services.keyboard_service import KeyboardService

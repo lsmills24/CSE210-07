@@ -4,8 +4,13 @@ from game.casting.actor import Actor
 class add_point: 
     self_score = 0 
 
-    def add(self_.position, gem, self_score):
-        if  self_.position = gem:
+    def __init__(self):
+
+        self._position = 0
+        self.self_score = 0
+
+    def add(self, gem, ):
+        if  self._position == gem:
             score =+ score + 1 
         else:
             score = score 

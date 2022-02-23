@@ -11,6 +11,6 @@ The game continues until the player closes the window.
 Authors: 
 Juan-David Engelbrecht(Directing) eng21003@byui.edu
 Tyson Mergel(Services) nip2001@byui.edu
-Loran Mills(Casting) ismills24@gmail.com
+Loran Mills(Casting) lsmills24@gmail.com
 Zanna Johnson(Shared) josafennaanna@gmail.com
 Emma Emos(Casting) 
