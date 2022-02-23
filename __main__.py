@@ -2,7 +2,7 @@ import random
 
 from game.casting.gems_rocks import Gem
 from game.casting.gems_rocks import Rocks
-from game.casting.removed import Removed 
+from game.casting.removed import Cast # Removed? 
 
 from game.directing.director import Director
 
