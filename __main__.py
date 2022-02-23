@@ -2,8 +2,8 @@ import os
 import random
 
 from game.casting.actor import Actor
-from game.casting.artifact import Artifact
-from game.casting.cast import Cast
+from game.casting.gems_rocks import Artifact
+from game.casting.removed import Cast
 
 from game.casting.gems_rocks import Gem
 from game.casting.gems_rocks import Rocks
@@ -11,8 +11,8 @@ from game.casting.removed import Cast # Removed?
 
 from game.directing.director import Director
 
-from game.services.keyboard_service import KeyboardService
-from game.services.video_service import VideoService
+from game.services.player_move import KeyboardService
+from game.services.earn import VideoService
 
 from game.shared.color import Color
 from game.shared.point import Point
