@@ -129,10 +129,10 @@ def main():
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     director = Director(keyboard_service, video_service)
     director.start_game(cast)
-        gem.set_color(color)
-        rock.set_color(color)
-        gem.set_position(position)
-        rock.set_position(position)
+    gem.set_color(color)
+    rock.set_color(color)
+    gem.set_position(position)
+    rock.set_position(position)
         
     
 
