@@ -1,5 +1,6 @@
 import os
 import random
+from sys import implementation
 
 from game.casting.actor import Actor
 from game.casting.removed import Cast
@@ -14,6 +15,7 @@ from game.services.player_move import Player
 from game.services.earn_point import AddPoint
 from game.services.lose_point import Lose
 from game.services.player_move import Player
+from game.services.video_service import VideoService
 from game.shared.color import Color
 
 
@@ -124,7 +126,7 @@ def main():
         cast.add_actor("artifacts", artifact)
 
     # start the game
-    keyboard_service = KeyboardService(CELL_SIZE)
+    keyboard_service = Player(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     director = Director(keyboard_service, video_service)
     director.start_game(cast)
@@ -135,7 +137,7 @@ def main():
     
 
 
-director = Director(Player)
+director = Director(Player, VideoService)
 director.start_game(Director)
 
 if __name__ == "__main__":
