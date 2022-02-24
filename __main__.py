@@ -7,7 +7,7 @@ from game.casting.removed import Cast
 
 from game.casting.gems_rocks import Gem
 from game.casting.gems_rocks import Rocks
-from game.casting.removed import Cast # Removed? 
+from game.casting.removed import Cast # "removed.py" 
 
 from game.directing.director import Director
 
@@ -129,8 +129,7 @@ def main():
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     director = Director(keyboard_service, video_service)
     director.start_game(cast)
-    gem.set_color(color)
-    rock.set_color(color)
+    game.casting.gem_rocks.set_color(color)
     gem.set_position(position)
     rock.set_position(position)
         
