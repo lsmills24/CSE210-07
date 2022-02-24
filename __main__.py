@@ -12,10 +12,10 @@ from game.casting.removed import Cast # Removed?
 from game.directing.director import Director
 
 from game.services.player_move import KeyboardService
-from game.services.earn import VideoService
-
+from game.services.earn_point import Point
+from game.services.lose_point import Lose
+from game.services.player_move import Player
 from game.shared.color import Color
-from game.shared.point import Point
 
 
 FRAME_RATE = 12
@@ -36,7 +36,6 @@ DEFAULT_ARTIFACTS2 = 20
 
 
 def main():
-
     # create the cast
     cast = Cast()
 
@@ -76,6 +75,8 @@ def main():
         # this needs to get the points from a function and display here instead of messages from a file
         message = messages[n]
 
+    """main"""
+    for n in range(Gem, Rocks):
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
         position = Point(x, y)
@@ -128,7 +129,16 @@ def main():
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     director = Director(keyboard_service, video_service)
     director.start_game(cast)
+        gem.set_color(color)
+        rock.set_color(color)
+        gem.set_position(position)
+        rock.set_position(position)
+        
+    
 
+
+director = Director(Player)
+director.start_game(Director)
 
 if __name__ == "__main__":
     main()
