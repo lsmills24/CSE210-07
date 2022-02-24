@@ -1,5 +1,5 @@
 from game.shared.color import Color
-from game.services.earn_point import Point
+from game.services.earn_point import AddPoint
 from game.services.lose_point import Lose
 
 class Actor: 

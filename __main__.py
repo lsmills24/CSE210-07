@@ -2,7 +2,6 @@ import os
 import random
 
 from game.casting.actor import Actor
-from game.casting.gems_rocks import Artifact
 from game.casting.removed import Cast
 
 from game.casting.gems_rocks import Gem
@@ -11,8 +10,8 @@ from game.casting.removed import Cast # "removed.py"
 
 from game.directing.director import Director
 
-from game.services.player_move import KeyboardService
-from game.services.earn_point import Point
+from game.services.player_move import Player
+from game.services.earn_point import AddPoint
 from game.services.lose_point import Lose
 from game.services.player_move import Player
 from game.shared.color import Color
