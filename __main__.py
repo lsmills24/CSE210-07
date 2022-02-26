@@ -1,40 +1,32 @@
-import os
+#Imports
 import random
-from sys import implementation
 
-from game.casting.actor import Actor
-from game.casting.removed import Cast
-
-from game.casting.gems_rocks import Gem
-from game.casting.gems_rocks import Rocks
-from game.casting.removed import Cast # "removed.py" 
+from game.services.keyboard_service import KeyboardService
+from game.services.video_service import VideoService
 
 from game.directing.director import Director
 
-from game.services.player_move import Player
-from game.services.earn_point import AddPoint
-from game.services.lose_point import Lose
-from game.services.player_move import Player
-from game.services.video_service import VideoService
+from game.casting.cast import Cast
+from game.casting.artifact import Artifact
+from game.casting.actor import Actor
+
 from game.shared.color import Color
+from game.shared.point import Point
 
-
+#Constants
 FRAME_RATE = 12
 MAX_X = 900
 MAX_Y = 600
 CELL_SIZE = 15
-FONT_SIZE = 30  # me: made it bigger
+FONT_SIZE = 15
 COLS = 60
 ROWS = 40
 CAPTION = "Greed"
-# will not be needed in the greed program
-DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
-# DATA_PATH = "Score: "
+DEFAULT_PIECES = 100
 WHITE = Color(255, 255, 255)
-# number of artifacts. Maybe a function to disappear for the gem game
-DEFAULT_ARTIFACTS = 20
-DEFAULT_ARTIFACTS2 = 20
 
+messages = ['Gem','Rock','Gem','Rock','Gem','Rock','Gem','Rock']
+pieces = ['*','o','*','o','*','o','*','o']
 
 def main():
     # create the cast
@@ -49,35 +41,22 @@ def main():
     cast.add_actor("banners", banner)
 
     # create the robot
-    # x = int(MAX_X / 2)
-    # y = int(MAX_Y / 2)
     x = int(MAX_X / 2)
-    # different position. needs to go to the bottom of the page
-    y = int(MAX_Y-95)
+    y = int(MAX_Y - 25) #lower part of screen
     position = Point(x, y)
 
     robot = Actor()
-    robot.set_text("#")  # the moving guy
+    robot.set_text("#")
     robot.set_font_size(FONT_SIZE)
     robot.set_color(WHITE)
-    # may change this to keep player at the bottom of the screen only
     robot.set_position(position)
     cast.add_actor("robots", robot)
 
-    # create the artifacts - Here is where they are pulling from Data
-    with open(DATA_PATH) as file:
-        data = file.read()
-        messages = data.splitlines()
+    for n in range(DEFAULT_PIECES):
+        ranNum = random.randrange(0,7)
+        text = pieces[ranNum]
+        message = messages[ranNum]
 
-    for n in range(DEFAULT_ARTIFACTS):
-        # text = chr(random.randint(33, 126))
-        text = "*"  # me: changed the symbols to display. CHR() = character function
-        # text2 = "[]" #box character?
-        # this needs to get the points from a function and display here instead of messages from a file
-        message = messages[n]
-
-    """main"""
-    for n in range(Gem, Rocks):
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
         position = Point(x, y)
@@ -87,58 +66,22 @@ def main():
         g = random.randint(0, 255)
         b = random.randint(0, 255)
         color = Color(r, g, b)
-
+        
         artifact = Artifact()
         artifact.set_text(text)
-        # artifact.set_text(text2)
         artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)
         artifact.set_position(position)
         artifact.set_message(message)
+        #Move 5 each cycle
+        artifact.set_velocity(Point(0,5))
         cast.add_actor("artifacts", artifact)
-
-    # adding a second artifact. TESTING: it works! just has 2 Found Kitten messages. One for each symbol.
-
-    for n in range(DEFAULT_ARTIFACTS2):
-        # text = chr(random.randint(33, 126))
-        # text = "*" #me: changed the symbols to display. CHR() = character function
-        text2 = "[]"  # box character?
-        # this needs to get the points from a function and display here instead of messages from a file
-        message = messages[n]
-
-        x = random.randint(1, COLS - 1)
-        y = random.randint(1, ROWS - 1)
-        position = Point(x, y)
-        position = position.scale(CELL_SIZE)
-
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        color = Color(r, g, b)
-
-        artifact = Artifact()
-        # artifact.set_text(text)
-        artifact.set_text(text2)
-        artifact.set_font_size(FONT_SIZE)
-        artifact.set_color(color)
-        artifact.set_position(position)
-        artifact.set_message(message)
-        cast.add_actor("artifacts", artifact)
-
-    # start the game
-    keyboard_service = Player(CELL_SIZE)
+    
+    #Start of Game
+    keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     director = Director(keyboard_service, video_service)
     director.start_game(cast)
-    game.casting.gem_rocks.set_color(color)
-    gem.set_position(position)
-    rock.set_position(position)
-        
-    
-
-
-director = Director(Player, VideoService)
-director.start_game(Director)
 
 if __name__ == "__main__":
     main()

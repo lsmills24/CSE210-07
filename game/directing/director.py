@@ -1,6 +1,13 @@
-# this runs the whole progarm together.
 class Director:
-    """Directs the game"""
+    """A person who directs the game. 
+    
+    The responsibility of a Director is to control the sequence of play.
+
+    Attributes:
+        _keyboard_service (KeyboardService): For getting directional input.
+        _video_service (VideoService): For providing video output.
+    """
+
     def __init__(self, keyboard_service, video_service):
         """Constructs a new Director using the specified keyboard and video services.
         
@@ -10,9 +17,11 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
-
+        self.score = 0
+        
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
+
         Args:
             cast (Cast): The cast of actors.
         """
@@ -31,7 +40,7 @@ class Director:
         """
         robot = cast.get_first_actor("robots")
         velocity = self._keyboard_service.get_direction()
-        robot.set_velocity(velocity)
+        robot.set_velocity(velocity)        
 
     def _do_updates(self, cast):
         """Updates the robot's position and resolves any collisions with artifacts.
@@ -47,11 +56,17 @@ class Director:
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
-
+        
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
                 message = artifact.get_message()
-                banner.set_text(message)
+                if message == 'Gem':
+                    self.score += 1
+                else:
+                    self.score -= 1
+                cast.remove_actor("artifacts", artifact)
+            artifact.move_next(900, 600)
+        banner.set_text("Score " + str(self.score))
 
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
