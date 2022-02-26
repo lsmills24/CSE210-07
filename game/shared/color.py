@@ -1,10 +1,9 @@
-# establishes a color for the gems and rocks
-
-## Only imported into the Main.py file ##
-
 class Color:
-    """Establishes a color for the gems and rocks
-    
+    """A color.
+
+    The responsibility of Color is to hold and provide information about itself. Color has a few 
+    convenience methods for comparing them and converting to a tuple.
+
     Attributes:
         _red (int): The red value.
         _green (int): The green value.
@@ -29,7 +28,8 @@ class Color:
 
     def to_tuple(self):
         """Gets the color as a tuple of four values (red, green, blue, alpha).
+
         Returns:
             Tuple(int, int, int, int): The color as a tuple.
         """
-        return (self._red, self._green, self._blue, self._alpha)  
+        return (self._red, self._green, self._blue, self._alpha)   

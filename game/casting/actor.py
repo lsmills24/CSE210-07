@@ -1,8 +1,7 @@
 from game.shared.color import Color
-from game.services.earn_point import AddPoint
-from game.services.lose_point import Lose
+from game.shared.point import Point
 
-class Actor: 
+class Actor:
     """A visible, moveable thing that participates in the game. 
     
     The responsibility of Actor is to keep track of its appearance, position and velocity in 2d 
@@ -17,7 +16,7 @@ class Actor:
     """
 
     def __init__(self):
-        """Constructs new Actor"""
+        """Constructs a new Actor."""
         self._text = ""
         self._font_size = 15
         self._color = Color(255, 255, 255)
@@ -47,7 +46,7 @@ class Actor:
             Point: The actor's position in 2d space.
         """
         return self._position
-
+    
     def get_text(self):
         """Gets the actor's textual representation.
         
@@ -63,7 +62,7 @@ class Actor:
             Point: The actor's speed and direction.
         """
         return self._velocity
-
+    
     def move_next(self, max_x, max_y):
         """Moves the actor to its next position according to its velocity. Will wrap the position 
         from one side of the screen to the other when it reaches the given maximum x and y values.
@@ -91,7 +90,7 @@ class Actor:
             position (Point): The given position.
         """
         self._position = position
-
+    
     def set_font_size(self, font_size):
         """Updates the font size to the given one.
         
@@ -99,7 +98,7 @@ class Actor:
             font_size (int): The given font size.
         """
         self._font_size = font_size
-
+    
     def set_text(self, text):
         """Updates the text to the given value.
         
